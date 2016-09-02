@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>part1</title>
+        <meta name="author" content="Ashish Raman Nayak" >
+    </head>
+<body onload="do_game();">
+    <script>
+        var colors=["aqua","black", "blue", "cyan","fuchsia", "gold",
+            "green", "gray", "magenta", "orange", "pink", "purple", "red",
+            "silver", "violet", "yellow"];
+        colors.sort();
+        var colorString=colors.join(', ');
+        var target_index;
+        var target;
+        var guess_input;
+        function do_game()
+        {
+            target_index = Math.floor((Math.random() * colors.length)+1);
+            target=colors[target_index];
+            alert(target);
+            do 
+            {
+                guess_input = prompt("I am thinking of one of these colors. \n\n" + colorString +
+                    "\n\n What color am I thinking of?");                
+            } while (guess_input != target);
+        }
+    </script>
+</body>
+</html>
