@@ -59,7 +59,7 @@
                     <li><a href="contactus.html"><span class="fa fa-envelope-o" aria-hidden="true"></span> Contact</a></li>
                 </ul>
 				<ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal">
+                    <li><a id="login">
                     <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 </ul>
@@ -82,10 +82,10 @@
             <div class="modal-body">
 				<form class="form-inline">
 				<div class="form-group">
-					<label class="sr-only" for=”email">Email address</label>
-						<input type="email" class="form-control" id=”email" placeholder="Email">
-					<label class="sr-only" for=”password">Password</label>
-						<input type="password" class="form-control" id=”password" placeholder="Password">
+					<label class="sr-only" for="email"> Email address </label>
+						<input type="email" class="form-control" id="email" placeholder="Email">
+					<label class="sr-only" for="password">Password</label>
+						<input type="password" class="form-control" id="password" placeholder="Password">
 				<div class="checkbox"><input type="checkbox" > Remember me</label>
 				</div>
 				<button type="submit" class=" btn btn-info">Sign in</button>
@@ -203,8 +203,8 @@
                 </div>
 			<div class="col-xs-12 col-sm-2">
 				<p style="padding:40px;"></p>
-				 <a type="button" class="btn btn-warning btn-block"
-                 data-toggle="modal" data-target="#reservationModal">Reserve Table</a>
+				 <a id="reserve" type="button" class="btn btn-warning btn-block"
+                 >Reserve Table</a>
 			</div>
             </div>
     
@@ -419,7 +419,20 @@
                         $("#carousel-play").click(function(){
                 $("#mycarousel").carousel('cycle');
             });
+           
+             
         });
+        
+         $("#login").click(function(){
+                $("#loginModal").modal('toggle');
+            });
+        
+        $("#reserve").click(function(){
+                $("#reservationModal").modal('toggle');
+            });
+        
+            
+      
     </script>
 	
     <!-- Include all compiled plugins (below), or include individual files as needed -->
