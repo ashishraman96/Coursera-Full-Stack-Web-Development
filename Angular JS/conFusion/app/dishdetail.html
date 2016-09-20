@@ -25,36 +25,32 @@
 
 <body>
 
-    <div class="container" >
-        <div class="row row-content" ng-controller="dishDetailController as dishCtrl">
+    <div class="container">
+        <div class="row row-content" ng-controller="dishDetailController as ddCtrl">
             <div class="col-xs-12">
-                <div class="media">
-                    <div class="media-left media-middle">
-                        <a href="#">
-                        <img class="media-object img-thumbnail"
-                         ng-src={{dishCtrl.dish.image}} alt="Uthappizza">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h2 class="media-heading">{{dishCtrl.dish.name}}
-                         <span class="label label-danger">{{dishCtrl.dish.label}}</span>
-                         <span class="badge">{{dishCtrl.dish.price | currency}}</span></h2>
-                        <p>{{dishCtrl.dish.description}}</p>
-                        
-                    </div>
-       
-                </div>
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                            <img class="media-object img-thumbnail"
+                             ng-src={{ddCtrl.dish.image}} alt="Uthappizza">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">{{ddCtrl.dish.name}}
+                             <span class="label label-danger">{{ddCtrl.dish.label}}</span>
+                             <span class="badge">{{ddCtrl.dish.price | currency}}</span></h2>
+                            <p>{{ddCtrl.dish.description}}</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="col-xs-4 col-xs-offset-1" >
-                <h2>Customer Comments</h2>
-            </div>
-                  <div class="col-xs-5" style="margin-top: 25px" >
-                Sort By: <input type="text" id="sort" ng-model="dishCtrl.sort">
-            </div>
-             <div class="col-xs-9 col-xs-offset-1" >
-               <blockquote ng-repeat="com in dishCtrl.dish.comments | orderBy: dishCtrl.sort">
-                    <p>{{com.rating}} stars <br> {{com.comment}}</p>
-                    <footer>{{com.author}}, {{com.date | date: "MMM. dd, yyyy"}} </footer>
+            <div class="col-xs-9 col-xs-offset-1">
+                <p><b>Customer comments</b> &nbsp;&nbsp;&nbsp; Sort by: <input type="text" ng-model="ddCtrl.sortingPredicate"></p>
+                <blockquote ng-repeat="comment in ddCtrl.dish.comments | orderBy:ddCtrl.sortingPredicate">
+                    <p>{{comment.rating}} Stars</p>
+                    <p>{{comment.comment}}</p>
+                    <footer>{{comment.author}}, {{comment.date | date : 'mediumDate'}}</footer>
                 </blockquote>
             </div>
         </div>
@@ -111,7 +107,6 @@
                     };
             
             this.dish = dish;
-            var sort= '';
             
         });
 
