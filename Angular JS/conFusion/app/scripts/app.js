@@ -1,7 +1,7 @@
 'use strict';
-angular.module('confusionApp', [])
+var mod = angular.module('confusionApp', [])
 
-        .controller('MenuController', ['$scope', function($scope) {
+        mod.controller('MenuController', ['$scope', function($scope) {
     
             $scope.tab = 1;
             $scope.filtText = '';
@@ -68,6 +68,9 @@ angular.module('confusionApp', [])
                 $scope.showDetails = !$scope.showDetails;
             };
         }])
+       
+        
+        
   .controller('ContactController', ['$scope', function($scope) {
             $scope.feedback = {mychannel:"", firstName:"", lastName:"", agree:false, email:"" };
                         var channels = [{value:"tel", label:"Tel."}, {value:"Email",label:"Email"}];
@@ -92,4 +95,7 @@ angular.module('confusionApp', [])
                 }
             };
         }]);
-;
+
+   
+        
+        ;
