@@ -1,7 +1,7 @@
 'use strict';
-var mod = angular.module('confusionApp')
+ angular.module('confusionApp')
 
-        mod.controller('MenuController', ['$scope', 'menuFactory', function($scope, menuFactory) {
+        .controller('MenuController', ['$scope', 'menuFactory', function($scope, menuFactory) {
     
             $scope.tab = 1;
             $scope.filtText = '';
@@ -63,11 +63,13 @@ var mod = angular.module('confusionApp')
       .controller('DishDetailController', ['$scope', 'menuFactory', function($scope, menuFactory) {
 
                $scope.dish= menuFactory.getDish(3);
-                   
+                
             
-            $scope.dish = dish;
+          
             
         }])
+ 
+ 
       .controller('CommentController', ['$scope', function($scope){
         $scope.comm={rating:"5", comment:"", author:"", date:""};
         
