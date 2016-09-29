@@ -60,10 +60,9 @@
             };
         }])
         
-         .controller('DishDetailController', ['$scope', '$routeParams', 'menuFactory', function($scope, $routeParams, menuFactory) {
-
-            var dish= menuFactory.getDish(parseInt($routeParams.id,10));                        
-             $scope.dish = dish;
+          .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
+                        $scope.dish = dish;
                     }])
  
       .controller('CommentController', ['$scope', function($scope){
