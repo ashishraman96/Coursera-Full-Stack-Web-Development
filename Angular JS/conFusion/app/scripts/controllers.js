@@ -1,17 +1,19 @@
 'use strict';
- angular.module('confusionApp')
+
+angular.module('confusionApp')
 
         .controller('MenuController', ['$scope', 'menuFactory', function($scope, menuFactory) {
-    
+            
             $scope.tab = 1;
             $scope.filtText = '';
             $scope.showDetails = false;
-            $scope.dishes= menuFactory.getDishes();
-               
- 
 
-             $scope.select = function(setTab) {
+            $scope.dishes= menuFactory.getDishes();
+
+                        
+            $scope.select = function(setTab) {
                 $scope.tab = setTab;
+                
                 if (setTab === 2) {
                     $scope.filtText = "appetizer";
                 }
@@ -25,61 +27,87 @@
                     $scope.filtText = "";
                 }
             };
+
             $scope.isSelected = function (checkTab) {
                 return ($scope.tab === checkTab);
             };
+    
             $scope.toggleDetails = function() {
                 $scope.showDetails = !$scope.showDetails;
             };
         }])
-       
-        
-        
-  .controller('ContactController', ['$scope', function($scope) {
+
+        .controller('ContactController', ['$scope', function($scope) {
+
             $scope.feedback = {mychannel:"", firstName:"", lastName:"", agree:false, email:"" };
-                        var channels = [{value:"tel", label:"Tel."}, {value:"Email",label:"Email"}];
-                        $scope.channels = channels;
+            
+            var channels = [{value:"tel", label:"Tel."}, {value:"Email",label:"Email"}];
+            
+            $scope.channels = channels;
             $scope.invalidChannelSelection = false;
-                                }])
+                        
+        }])
+
         .controller('FeedbackController', ['$scope', function($scope) {
-                        $scope.sendFeedback = function() {
-                                console.log($scope.feedback);
-                                if ($scope.feedback.agree && ($scope.feedback.mychannel == "")&& !$scope.feedback.mychannel) {
-                                       $scope.invalidChannelSelection = true;
+            
+            $scope.sendFeedback = function() {
+                
+                console.log($scope.feedback);
+                
+                if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
+                    $scope.invalidChannelSelection = true;
                     console.log('incorrect');
                 }
                 else {
                     $scope.invalidChannelSelection = false;
-                    $scope.feedback = {mychannel:"", firstName:"", lastName:"",
-                                       agree:false, email:"" };
+                    $scope.feedback = {mychannel:"", firstName:"", lastName:"", agree:false, email:"" };
                     $scope.feedback.mychannel="";
-
                     $scope.feedbackForm.$setPristine();
                     console.log($scope.feedback);
                 }
             };
         }])
-        
-          .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
-            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
-                        $scope.dish = dish;
-                    }])
- 
-      .controller('CommentController', ['$scope', function($scope){
-        $scope.comm={rating:"5", comment:"", author:"", date:""};
-        
-        $scope.postComment = function(){
-             $scope.comm.date = new Date().toISOString();
-            $scope.dish.comments.push($scope.comm);
-            $scope.commentForm.$setPristine();
-              $scope.comm={rating:"5", comment:"", author:"", date:""};
-            
-        }
-        
-    }]);
-        
-        ;
 
-   
-        
-        
+        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+
+            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
+            
+            $scope.dish = dish;
+            
+        }])
+
+
+
+        .controller('DishCommentController', ['$scope', function($scope) {
+            
+            $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+            
+            $scope.submitComment = function () {
+                
+                $scope.mycomment.date = new Date().toISOString();
+                console.log($scope.mycomment);
+                
+                $scope.dish.comments.push($scope.mycomment);
+                
+                $scope.commentForm.$setPristine();
+                
+                $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+            };
+        }])
+
+        // implement the IndexController and About Controller here
+        .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory){
+           $scope.dishi = menuFactory.getDish(0);
+            $scope.promotion = menuFactory.getPromotion(0);
+            $scope.leader = corporateFactory.getLeader(3);
+        }])
+
+        .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory){
+            var leaders = corporateFactory.getLeaders();
+            $scope.leaders=leaders;
+             
+        }])
+            
+                                        
+                                        
+;
