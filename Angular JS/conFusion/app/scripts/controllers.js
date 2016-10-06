@@ -80,10 +80,10 @@ angular.module('confusionApp')
         .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
             $scope.showDish = false;
             $scope.message = "Loading ...";
-            $scope.dishi = menuFactory.getDishes().get({id: parseInt($stateParams.id, 10)})
+            $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id, 10)})
                 .$promise.then(
                     function(response){
-                        $scope.dishi= response;
+                        $scope.dish= response;
                         $scope.showDish = true;
                     },
                     function(response) {
@@ -92,29 +92,29 @@ angular.module('confusionApp')
             );
         }])
 
-        .controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
-            $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+        .controller('CommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
+            $scope.comment = {rating:5, comment:"", author:"", date:""};
             $scope.ratings = [1, 2, 3, 4, 5];
             
             $scope.submitComment = function () {
-                $scope.mycomment.date = new Date().toISOString();
-                console.log($scope.mycomment);
-                $scope.dish.comments.push($scope.mycomment);
+                $scope.comment.date = new Date().toISOString();
+                console.log($scope.comment);
+                $scope.dish.comments.push($scope.comment);
                 
                 menuFactory.getDishes().update({id:$scope.dish.id}, $scope.dish);
                 
                 $scope.commentForm.$setPristine();
-                $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+                $scope.comment = {rating:5, comment:"", author:"", date:""};
             };
         }])
 
         .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
             $scope.showDish = false;
             $scope.message="Loading ...";
-            $scope.dishi = menuFactory.getDishes().get({id:0})
+            $scope.dish = menuFactory.getDishes().get({id:0})
                 .$promise.then(
                     function(response){
-                        $scope.dishi = response;
+                        $scope.dish = response;
                         $scope.showDish = true;
                     },
                     function(response) {
