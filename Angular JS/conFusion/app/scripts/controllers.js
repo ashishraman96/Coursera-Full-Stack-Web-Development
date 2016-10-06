@@ -99,7 +99,7 @@ angular.module('confusionApp')
             $scope.submitComment = function () {
                 $scope.comment.date = new Date().toISOString();
                 console.log($scope.comment);
-                $scope.dish.comments.push($scope.comment);
+                $scope.dish.comment.push($scope.comment);
                 
                 menuFactory.getDishes().update({id:$scope.dish.id}, $scope.dish);
                 
