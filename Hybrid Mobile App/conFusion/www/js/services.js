@@ -33,8 +33,20 @@ angular.module('conFusion.services',['ngResource'])
 
         .factory('corporateFactory', ['$resource', 'baseURL', function($resource,baseURL) {
     
-    
-            return $resource(baseURL+"leadership/:id");
+         
+            var corpfac = {};
+            
+              
+            corpfac.getLeaders= function()
+            {
+                return $resource(baseURL+"leadership/:id",null, {'getData': {method:'GET'}});
+            };
+            
+            corpfac.getLeader=function(index){
+                return $resource(baseURL+"leadership/"+index,null, {'getData': {method:'GET'}});
+            };
+            
+            return corpfac;
     
         }])
 
