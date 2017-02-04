@@ -111,7 +111,7 @@ angular.module('conFusion.controllers', [])
             };
             //Favourite    
             $scope.addFavorite = function (index)
-            {
+            {   
                 console.log("index is " + index);
                 favoriteFactory.addToFavorites(index);
                 $ionicListDelegate.closeOptionButtons();
